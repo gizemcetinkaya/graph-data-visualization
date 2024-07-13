@@ -3,7 +3,7 @@
         <h2>Graph View</h2>
         <div v-if="loading">Loading...</div>
         <ul v-else>
-            <li v-for="node in nodes" :key="node.name">
+            <li v-for="node in nodes" :key="node.name" @click="selectNode(node.name)">
                 {{ node.name }}: {{ node.description }}
             </li>
         </ul>
@@ -17,7 +17,8 @@ import { Node } from '../services/data';
 
 export default defineComponent({
     name: 'GraphView',
-    setup() {
+    emits: ['select-node'],
+    setup(props, { emit }) {
 
         const nodes = ref<Node[]>([]);
         const loading = ref(true);
@@ -27,9 +28,14 @@ export default defineComponent({
             loading.value = false;
         });
 
+        const selectNode = (nodeName: string) => {
+            emit('select-node', nodeName);
+        };
+
         return {
             nodes,
             loading,
+            selectNode,
         };
     }
 });

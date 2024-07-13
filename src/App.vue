@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <GraphView />
-    <NodeDetails />
+    <GraphView @select-node="selectNode" />
+    <NodeDetails :selectedNode="selectedNode" @deselect-node="deselectNode" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import GraphView from './components/GraphView.vue';
 import NodeDetails from './components/NodeDetails.vue';
 
@@ -15,6 +15,23 @@ export default defineComponent({
   components: {
     GraphView,
     NodeDetails,
+  },
+  setup() {
+    const selectedNode = ref<string | null>(null);
+
+    const selectNode = (nodeName: string) => {
+      selectedNode.value = nodeName;
+    };
+
+    const deselectNode = () => {
+      selectedNode.value = null;
+    };
+
+    return {
+      selectedNode,
+      selectNode,
+      deselectNode,
+    };
   },
 });
 </script>
