@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <GraphView @select-node="selectNode" />
+  <div id="app" class="app-container">
+    <GraphView :selectedNode="selectedNode" @select-node="selectNode" />
     <NodeDetails :selectedNode="selectedNode" @deselect-node="deselectNode" />
   </div>
 </template>
@@ -19,7 +19,7 @@ export default defineComponent({
   setup() {
     const selectedNode = ref<string | null>(null);
 
-    const selectNode = (nodeName: string) => {
+    const selectNode = (nodeName: string | null) => {
       selectedNode.value = nodeName;
     };
 
@@ -35,3 +35,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.app-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+}
+</style>
