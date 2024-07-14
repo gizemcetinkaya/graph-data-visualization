@@ -46,10 +46,10 @@ export default defineComponent({
     flex-direction: column;
     align-self: center;
     border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0 0 5rem;
     background-color: #f9f9f9;
-    width: 300px;
+    width: 20rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,30 +57,27 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    margin-bottom: 1rem;
 }
 
 .node-details h2 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1rem;
 }
 
 .node-details button {
     background: none;
     border: none;
-    font-size: 1.5em;
+    font-size: 1rem;
     cursor: pointer;
     padding: 0;
     margin: 0;
 }
 
-/* .node-details button:hover {
-    background: #0056b3;
-} */
-
 .node-details p {
     margin: 0;
-    font-size: 1em;
+    font-size: 0.875rem;
     color: #333;
+    text-align: left;
 }
 </style>
