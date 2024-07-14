@@ -14,6 +14,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, PropType } from 'vue';
 import { fetchGraphData, GraphNode } from '../services/api';
+import { Node } from '../services/data';
 import TreeNode from './TreeNode.vue';
 
 export default defineComponent({
@@ -29,26 +30,21 @@ export default defineComponent({
     },
     emits: ['select-node'],
     setup(props, { emit }) {
-        const nodes = ref<GraphNode[]>([]);
         const loading = ref(true);
         const rootNodes = ref<GraphNode[]>([]);
 
-        const buildTree = (nodeMap: { [key: string]: GraphNode }, parentName: string | null): GraphNode[] => {
-            return Object.values(nodeMap)
+        const buildTree = (data: Node[], parentName: string): GraphNode[] => {
+            return data
                 .filter(node => node.parent === parentName)
                 .map(node => ({
                     ...node,
-                    children: buildTree(nodeMap, node.name),
+                    children: buildTree(data, node.name),
                 }));
         };
 
         onMounted(async () => {
             const data = await fetchGraphData();
-            const nodeMap: { [key: string]: GraphNode } = {};
-            data.forEach(node => {
-                nodeMap[node.name] = { ...node };
-            });
-            rootNodes.value = buildTree(nodeMap, null);
+            rootNodes.value = buildTree(data, "");
             loading.value = false;
         });
 
@@ -67,17 +63,23 @@ export default defineComponent({
 
 <style scoped>
 .graph-view {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
+
+.graph-view h2 {
+    margin-right: 2rem;
+}
+
 .tree {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
+
 .tree ul {
-  padding-left: 20px;
-  border-left: 1px solid #ccc;
-  margin: 0;
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+    margin: 0;
 }
 </style>

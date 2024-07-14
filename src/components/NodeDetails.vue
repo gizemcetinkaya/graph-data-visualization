@@ -24,8 +24,8 @@ export default defineComponent({
     },
     emits: ['deselect-node'],
     setup(props, { emit }) {
-        const selectedNodeDetails = computed<Node | null>(() => {
-            return props.selectedNode ? graphData.find(node => node.name === props.selectedNode) || null : null;
+        const selectedNodeDetails = computed<Node | undefined>(() => {
+            return props.selectedNode ? graphData.find(node => node.name === props.selectedNode) : undefined;
         });
 
         const deselectNode = () => {
