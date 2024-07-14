@@ -70,6 +70,7 @@ li::marker {
 
 .children {
     padding-left: 5rem;
+    border-left: 1px solid #ccc;
     margin: 0;
     transition: all 0.3s ease-in-out;
 }
