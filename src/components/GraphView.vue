@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, PropType } from 'vue';
-import { fetchGraphData, GraphNode } from '../services/api';
-import { Node } from '../services/data';
+import { fetchGraphData } from '../services/api';
+import { GraphNode, Node } from '../services/data';
 import TreeNode from './TreeNode.vue';
 
 export default defineComponent({

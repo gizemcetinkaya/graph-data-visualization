@@ -1,3 +1,7 @@
+export interface GraphNode extends Node {
+  children?: GraphNode[];
+}
+
 export interface Node {
   name: string;
   description: string;

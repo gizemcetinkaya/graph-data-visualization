@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue';
-import { GraphNode } from '../services/api';
+import { GraphNode } from '../services/data';
 
 export default defineComponent({
     name: 'TreeNode',
